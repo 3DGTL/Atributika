@@ -11,12 +11,12 @@ import Foundation
 public struct Tag {
     public let name: String
     public let attributes: [String: String]
-    public let original: String?
+    public var index: Int
 
-    init(name: String, attributes: [String: String], original: String? = nil) {
+    init(name: String, attributes: [String: String], index: Int = -1) {
         self.name = name
         self.attributes = attributes
-        self.original = original
+        self.index = index
     }
 }
 
@@ -62,9 +62,7 @@ extension String {
             attrubutes[name] = value.replacingOccurrences(of: "&quot;", with: "\"")
         }
 
-        //reconstruct the original tag
-        let original = "<\(tagString)\(parseAttributes ? "" : "/")>"
-        return Tag(name: tagName, attributes: attrubutes, original: original)
+        return Tag(name: tagName, attributes: attrubutes)
     }
 
     private static let specials = ["quot": "\"",
@@ -73,13 +71,15 @@ extension String {
                                    "lt": "<",
                                    "gt": ">"]
 
-    public func detectTags(_ supportedTags: [String] = [String]()) -> (string: String, tagsInfo: [TagInfo]) {
+    public func detectTags() -> (string: String, tagsInfo: [TagInfo]) {
 
         let scanner = Scanner(string: self)
         scanner.charactersToBeSkipped = nil
         var resultString = String()
         var tagsResult = [TagInfo]()
         var tagsStack = [(Tag, Int)]()
+
+        var index = 0
 
         while !scanner.isAtEnd {
 
@@ -90,9 +90,13 @@ extension String {
                     let open = scanner.scanString("/") == nil
                     if let tagString = scanner.scanUpTo(">") {
 
-                        let parsedTag = parseTag(tagString, parseAttributes: open)
-                        //check if tag is parsed and supported
-                        if let tag = parsedTag, supportedTags.contains(tag.name) {
+                        if var tag = parseTag(tagString, parseAttributes: open) {
+
+                            //add the index to the tag, only on opening tag because we need the order from outer to inner
+                            if open {
+                                tag.index = index
+                                index += 1
+                            }
 
                             if tag.name == "br" {
                                 resultString += "\n"
@@ -111,9 +115,6 @@ extension String {
                                     }
                                 }
                             }
-                        } else {
-                            //add the unsupported tag to the output
-                            resultString += parsedTag?.original ?? ""
                         }
                         scanner.scanString(">")
                     }
@@ -127,6 +128,12 @@ extension String {
                 }
             }
         }
+
+        //resort result by Index - first match comes first - because paragraph works from outer to inner
+        tagsResult = tagsResult.sorted { lhs, rhs in
+            return lhs.tag.index < rhs.tag.index
+        }
+
         return (resultString, tagsResult)
     }
 
