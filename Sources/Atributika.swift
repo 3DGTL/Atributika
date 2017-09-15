@@ -134,10 +134,7 @@ extension String: AtributikaProtocol {
     }
 
     public func style(tags: [Style]) -> AtributikaProtocol {
-        let supported = tags.map {
-            $0.name
-        }
-        let (string, tagsInfo) = detectTags(supported)
+        let (string, tagsInfo) = detectTags()
 
         var ds: [Detection] = []
 
