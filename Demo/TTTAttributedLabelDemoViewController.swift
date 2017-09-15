@@ -36,7 +36,7 @@ class TTTAttributedLabelDemoViewController: UIViewController {
         label.numberOfLines = 0
         label.delegate = self
         
-        let aka = "If only Bradley's arm was longer. Best photo ever. #oscars <a href=\"https://pic.twitter.com/C9U5NOtGap\">pic.twitter.com/C9U5NOtGap</a>".style(tags: link)
+        let aka = "<be/>If only Bradley's arm was longer. Best photo ever. #oscars <a href=\"https://pic.twitter.com/C9U5NOtGap\">pic.twitter.com/C9U5NOtGap</a>".style(tags: link)
             .styleAll(all)
             .styleHashtags(link)
         
