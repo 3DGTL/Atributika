@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24682191-f090-477b-9d09-db3932f20c11" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Atributika.xcodeproj/xcshareddata/xcschemes/Atributika-iOS.xcscheme" afterPath="$PROJECT_DIR$/Atributika.xcodeproj/xcshareddata/xcschemes/Atributika-iOS.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/TTTAttributedLabelDemoViewController.swift" afterPath="$PROJECT_DIR$/Demo/TTTAttributedLabelDemoViewController.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/Atributika.swift" afterPath="$PROJECT_DIR$/Sources/Atributika.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sources/String+Detection.swift" afterPath="$PROJECT_DIR$/Sources/String+Detection.swift" />
-    </list>
+    <list default="true" id="24682191-f090-477b-9d09-db3932f20c11" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,12 +167,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505465427172</updated>
-      <workItem from="1505465428604" duration="1980000" />
+      <workItem from="1505465428604" duration="2042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1980000" />
+    <option name="totallyTimeSpent" value="2042000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="48" y="22" width="1860" height="1057" extended-state="6" />
