@@ -153,7 +153,7 @@ extension String {
 
         let dataDetector = try? NSRegularExpression(pattern: regex, options: options)
         dataDetector?.enumerateMatches(in: self, options: [], range: NSMakeRange(0, (self as NSString).length), using: { (result, flags, _) in
-            if let r = result, let range = r.range.toRange() {
+            if let r = result, let range = Range(r.range) {
                 ranges.append(range)
             }
         })
@@ -167,7 +167,7 @@ extension String {
 
         let dataDetector = try? NSDataDetector(types: textCheckingTypes)
         dataDetector?.enumerateMatches(in: self, options: [], range: NSMakeRange(0, (self as NSString).length), using: { (result, flags, _) in
-            if let r = result, let range = r.range.toRange() {
+            if let r = result, let range = Range(r.range) {
                 ranges.append(range)
             }
         })
